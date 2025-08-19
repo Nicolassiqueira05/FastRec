@@ -16,13 +16,27 @@ public class Record {
         recorder.setVideoCodec(avcodec.AV_CODEC_ID_H264);
         recorder.setFormat("mp4");
         recorder.setFrameRate(framerate);
+
+        recorder.setPixelFormat(avutil.AV_PIX_FMT_YUV420P);
+
+        recorder.setVideoBitrate(10_000_000);
+        recorder.setVideoOption("preset", "ultrafast");
+        recorder.setVideoOption("tune", "zerolatency");
+
         recorder.start();
 
         converter = new Java2DFrameConverter();
     }
 
     public void record(BufferedImage image) throws Exception {
-        recorder.record(converter.convert(image));
+        BufferedImage bgrImage = new BufferedImage(
+                image.getWidth(),
+                image.getHeight(),
+                BufferedImage.TYPE_3BYTE_BGR
+        );
+        bgrImage.getGraphics().drawImage(image, 0, 0, null);
+
+        recorder.record(converter.convert(bgrImage));
     }
 
     public void stop() throws Exception {
