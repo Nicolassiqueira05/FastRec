@@ -21,9 +21,13 @@ public class Recorder {
 
         t1 = new Thread(() -> {
             try {
+                long startTime = System.currentTimeMillis();
                 while (rec) {
+                    System.out.println("shot");
                     record.record(capture.shot());
-                    Thread.sleep(delay);
+
+                    long timestamp = (System.currentTimeMillis() - startTime) * 1000; // em microssegundos
+                    record.setTimestamp(timestamp);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

@@ -13,7 +13,17 @@ public class Capture {
     }
 
     public BufferedImage shot() {
-        return robot.createScreenCapture(screen);
+        BufferedImage image = robot.createScreenCapture(screen);
+
+        Point mousePos = MouseInfo.getPointerInfo().getLocation();
+
+        Graphics2D g = image.createGraphics();
+        g.setColor(Color.BLACK);
+        int cursorSize = 10;
+        g.fillOval(mousePos.x, mousePos.y, cursorSize, cursorSize);
+        g.dispose();
+
+        return image;
     }
 
     public int getWidth() { return screen.width; }

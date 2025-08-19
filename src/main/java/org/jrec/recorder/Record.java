@@ -20,12 +20,15 @@ public class Record {
         recorder.setPixelFormat(avutil.AV_PIX_FMT_YUV420P);
 
         recorder.setVideoBitrate(10_000_000);
-        recorder.setVideoOption("preset", "ultrafast");
-        recorder.setVideoOption("tune", "zerolatency");
+        recorder.setVideoOption("preset", "medium");
 
         recorder.start();
 
         converter = new Java2DFrameConverter();
+    }
+
+    public void setTimestamp(long microseconds) throws Exception {
+        recorder.setTimestamp(microseconds);
     }
 
     public void record(BufferedImage image) throws Exception {
