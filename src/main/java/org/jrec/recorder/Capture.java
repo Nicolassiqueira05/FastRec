@@ -1,4 +1,4 @@
-package org.example.recorder;
+package org.jrec.recorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

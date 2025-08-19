@@ -1,4 +1,4 @@
-package org.example.recorder;
+package org.jrec.recorder;
 
 public class Recorder {
 

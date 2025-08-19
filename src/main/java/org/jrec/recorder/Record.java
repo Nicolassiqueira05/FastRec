@@ -1,4 +1,4 @@
-package org.example.recorder;
+package org.jrec.recorder;
 
 import org.bytedeco.javacv.FFmpegFrameRecorder;
 import org.bytedeco.javacv.Java2DFrameConverter;
