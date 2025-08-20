@@ -10,10 +10,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        File pasta = new File("cache");
+        File pasta = new File("records");
         if (!pasta.exists()) pasta.mkdirs();
 
-        Recorder recorder = new Recorder("cache/output.mp4", 60.0);
+        Recorder recorder = new Recorder("records/output.mp4", 60.0);
         Window window = new Window(recorder::start, recorder::stop, Rename::rename);
 
     }

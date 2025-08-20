@@ -10,8 +10,8 @@ public class Rename {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
         String formattedNow = now.format(formatter);
 
-        File file = new File("cache/output.mp4");
-        File newFile = new File("cache/recording_" + formattedNow + ".mp4");
+        File file = new File("records/output.mp4");
+        File newFile = new File("records/recording_" + formattedNow + ".mp4");
 
         if (file.exists()) {
             boolean success = file.renameTo(newFile);
