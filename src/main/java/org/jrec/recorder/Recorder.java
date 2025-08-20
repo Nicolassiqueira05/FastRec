@@ -45,4 +45,8 @@ public class Recorder {
             e.printStackTrace();
         }
     }
+
+    public boolean IsPlaying(){
+        return rec;
+    }
 }
