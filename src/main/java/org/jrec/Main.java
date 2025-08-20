@@ -1,11 +1,20 @@
 package org.jrec;
 
+import org.jrec.file.Rename;
 import org.jrec.recorder.Recorder;
 import org.jrec.window.Window;
 
+import java.io.File;
+
 public class Main {
+
     public static void main(String[] args) throws Exception {
-        Recorder recorder = new Recorder("output.mp4", 30.0);
-        Window window = new Window(recorder::start, recorder::stop);
+
+        File pasta = new File("cache");
+        if (!pasta.exists()) pasta.mkdirs();
+
+        Recorder recorder = new Recorder("cache/output.mp4", 60.0);
+        Window window = new Window(recorder::start, recorder::stop, Rename::rename);
+
     }
 }
