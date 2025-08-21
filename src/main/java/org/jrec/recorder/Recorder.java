@@ -10,6 +10,7 @@ public class Recorder {
     private String fname;
     private Thread t1;
     private boolean rec = false;
+    private boolean paused = false;
 
     public Recorder(String fname, double framerate) throws Exception{
         this.framerate = framerate;
@@ -30,11 +31,13 @@ public class Recorder {
             try {
                 long startTime = System.currentTimeMillis();
                 while (rec) {
-                    System.out.println("shot");
-                    record.record(capture.shot());
+                    if(!paused){
+                        record.record(capture.shot());
+                        long timestamp = (System.currentTimeMillis() - startTime) * 1000; // em microssegundos
+                        record.setTimestamp(timestamp);
 
-                    long timestamp = (System.currentTimeMillis() - startTime) * 1000; // em microssegundos
-                    record.setTimestamp(timestamp);
+                    }
+                    Thread.sleep(delay);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -51,6 +54,10 @@ public class Recorder {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void pause(){
+        paused = paused ? false : true;
     }
 
     public boolean IsPlaying(){

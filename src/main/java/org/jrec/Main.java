@@ -14,7 +14,7 @@ public class Main {
         if (!pasta.exists()) pasta.mkdirs();
 
         Recorder recorder = new Recorder("records/output.mp4", 60.0);
-        Window window = new Window(recorder::start, recorder::stop, Rename::rename);
+        Window window = new Window(recorder::start, recorder::stop, Rename::rename, recorder::pause);
 
     }
 }

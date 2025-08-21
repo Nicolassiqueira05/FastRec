@@ -9,22 +9,16 @@ public class Window extends JFrame {
     static ImageIcon b1i, b2i, b3i;
     private boolean rec = false;
 
-    public Window(Runnable m1, Runnable m2, Runnable m3) {
-
-        b1i = new ImageIcon(this.getClass().getResource("/b1.png"));
-        Image resizedb1i = b1i.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-
-        b1i = new ImageIcon(resizedb1i);
+    public Window(Runnable m1, Runnable m2, Runnable m3, Runnable m4) {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Java Recorder");
-        setResizable(true);
+        setTitle("Fast Recorder");
+        setResizable(false);
 
-        JPanel jpanel = new JPanel(new GridLayout(1, 5, 5, 5));
+        JPanel jpanel = new JPanel(new GridLayout(1, 5, 10, 10));
 
         b1 = new JButton();
-        setButtonStyle(b1);
-        b1.setIcon(b1i);
+        setButtonStyle(b1, getResizedIcon("/b1.png"));
         b1.addActionListener(e -> {
             if(!rec)
             {
@@ -39,6 +33,10 @@ public class Window extends JFrame {
             }
         });
         b2 = new JButton();
+        setButtonStyle(b2, getResizedIcon("/b2.png"));
+        b2.addActionListener(e -> {
+            m4.run();
+        });
         b3 = new JButton();
         b4 = new JButton();
         b5 = new JButton();
@@ -56,9 +54,18 @@ public class Window extends JFrame {
         setVisible(true);
     }
 
-    public void setButtonStyle(JButton button){
-        button.setSize(new Dimension(40, 40));
-        button.setPreferredSize(new Dimension(40, 40));
+    public void setButtonStyle(JButton button, ImageIcon icon){
+        button.setIcon(icon);
+        button.setText(null); // sem texto
+        button.setFocusPainted(false);
+        button.setMargin(new Insets(5, 5, 5, 5)); // margens internas
+        // NÃO mexa no Border nem ContentAreaFilled, assim o Swing usa o estilo padrão
+    }
+
+    public ImageIcon getResizedIcon(String path){
+        ImageIcon BIcon = new ImageIcon(this.getClass().getResource(path));
+        Image resizedBIcon = BIcon.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+        return new ImageIcon(resizedBIcon);
     }
 
 }
