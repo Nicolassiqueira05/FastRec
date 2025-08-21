@@ -5,17 +5,24 @@ import java.lang.Thread;
 public class Recorder {
 
     private final Capture capture;
-    private final Record record;
+    private Record record;
     private final double framerate;
+    private String fname;
     private Thread t1;
     private boolean rec = false;
 
     public Recorder(String fname, double framerate) throws Exception{
         this.framerate = framerate;
         this.capture = new Capture();
-        this.record = new Record(fname, capture.getWidth(), capture.getHeight(), framerate);
+        this.fname = fname;
     }
     public void start(){
+        try{
+            this.record = new Record(fname, capture.getWidth(), capture.getHeight(), framerate);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         rec = true;
         long delay = (long) (1000/framerate);
 
