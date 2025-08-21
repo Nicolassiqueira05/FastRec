@@ -23,8 +23,8 @@ public class Window extends JFrame {
         JPanel jpanel = new JPanel(new GridLayout(1, 5, 5, 5));
 
         b1 = new JButton();
-        b1.setIcon(b1i);
         setButtonStyle(b1);
+        b1.setIcon(b1i);
         b1.addActionListener(e -> {
             if(!rec)
             {
@@ -38,10 +38,10 @@ public class Window extends JFrame {
                 rec = false;
             }
         });
-        b2 = new JButton("Pausar");
-        b3 = new JButton("Microfone");
-        b4 = new JButton("...");
-        b5 = new JButton("Configurações");
+        b2 = new JButton();
+        b3 = new JButton();
+        b4 = new JButton();
+        b5 = new JButton();
 
         jpanel.add(b1);
         jpanel.add(b2);
