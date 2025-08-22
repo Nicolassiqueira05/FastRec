@@ -2,6 +2,8 @@ package org.jrec.recorder;
 
 import java.lang.Thread;
 
+import static org.jrec.RecorderManager.*;
+
 public class Recorder {
 
     private final Capture capture;
@@ -58,6 +60,7 @@ public class Recorder {
 
     public void pause(){
         paused = paused ? false : true;
+        setPaused(paused ? false : true);
     }
 
     public boolean IsPlaying(){

@@ -2,11 +2,11 @@ package org.jrec.window;
 
 import javax.swing.*;
 import java.awt.*;
+import static org.jrec.RecorderManager.*;
 
 public class Window extends JFrame {
 
     private JButton b1, b2, b3, b4, b5;
-    static ImageIcon b1i, b2i, b3i;
     private boolean rec = false;
 
     public Window(Runnable m1, Runnable m2, Runnable m3, Runnable m4) {
@@ -35,7 +35,14 @@ public class Window extends JFrame {
         b2 = new JButton();
         setButtonStyle(b2, getResizedIcon("/b2.png"));
         b2.addActionListener(e -> {
+
+            if(isPaused())
+            {setButtonStyle(b2, getResizedIcon("/b1.png"));}
+            else
+            {setButtonStyle(b2, getResizedIcon("/b2.png"));}
+
             m4.run();
+
         });
         b3 = new JButton();
         b4 = new JButton();
@@ -56,10 +63,9 @@ public class Window extends JFrame {
 
     public void setButtonStyle(JButton button, ImageIcon icon){
         button.setIcon(icon);
-        button.setText(null); // sem texto
+        button.setText(null);
         button.setFocusPainted(false);
-        button.setMargin(new Insets(5, 5, 5, 5)); // margens internas
-        // NÃO mexa no Border nem ContentAreaFilled, assim o Swing usa o estilo padrão
+        button.setMargin(new Insets(5, 5, 5, 5));
     }
 
     public ImageIcon getResizedIcon(String path){
