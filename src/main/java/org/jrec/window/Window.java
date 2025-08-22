@@ -33,15 +33,14 @@ public class Window extends JFrame {
             }
         });
         b2 = new JButton();
-        setButtonStyle(b2, getResizedIcon("/b2.png"));
+        setButtonStyle(b2, getResizedIcon("/pause.png"));
         b2.addActionListener(e -> {
 
-            if(isPaused())
-            {setButtonStyle(b2, getResizedIcon("/b1.png"));}
-            else
-            {setButtonStyle(b2, getResizedIcon("/b2.png"));}
-
             m4.run();
+            if(isPaused())
+            {setButtonStyle(b2, getResizedIcon("/play.png"));}
+            else
+            {setButtonStyle(b2, getResizedIcon("/pause.png"));}
 
         });
         b3 = new JButton();
