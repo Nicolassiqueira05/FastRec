@@ -6,7 +6,7 @@ import org.jrec.window.Window;
 
 import java.io.File;
 
-public class Main {
+public class Main { agora eu tenho certeza
 
     public static void main(String[] args) throws Exception {
 
@@ -14,7 +14,7 @@ public class Main {
         if (!pasta.exists()) pasta.mkdirs();
 
         Recorder recorder = new Recorder("records/output.mp4", 60.0);
-        Window window = new Window(recorder::start, recorder::stop, Rename::rename, recorder::pause);
+        Window window = new Window(recorder::start, recorder::stop, Rename::rename, recorder::pause, recorder::resume);
 
     }
 }
