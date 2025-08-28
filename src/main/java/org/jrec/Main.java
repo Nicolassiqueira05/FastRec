@@ -3,18 +3,21 @@ package org.jrec;
 import org.jrec.file.Rename;
 import org.jrec.recorder.Recorder;
 import org.jrec.window.Window;
+import org.jrec.file.RecorderFolder;
 
 import java.io.File;
 
-public class Main { agora eu tenho certeza
+public class Main {
 
     public static void main(String[] args) throws Exception {
+
+        RecorderFolder rf = new RecorderFolder();
 
         File pasta = new File("records");
         if (!pasta.exists()) pasta.mkdirs();
 
         Recorder recorder = new Recorder("records/output.mp4", 60.0);
-        Window window = new Window(recorder::start, recorder::stop, Rename::rename, recorder::pause, recorder::resume);
+        Window window = new Window(recorder::start, recorder::stop, Rename::rename, recorder::pause, recorder::resume, rf::openFolder);
 
     }
 }

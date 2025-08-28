@@ -9,7 +9,7 @@ public class Window extends JFrame {
     private JButton b1, b2, b3, b4, b5;
     private boolean rec = false;
 
-    public Window(Runnable m1, Runnable m2, Runnable m3, Runnable m4, Runnable m5) {
+    public Window(Runnable m1, Runnable m2, Runnable m3, Runnable m4, Runnable m5, Runnable m6) {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Fast Recorder");
@@ -49,8 +49,16 @@ public class Window extends JFrame {
 
         });
         b3 = new JButton();
+        setButtonStyle(b3, getResizedIcon("/mic.png"));
+
         b4 = new JButton();
+        setButtonStyle(b4, getResizedIcon("/folder.png"));
+        b4.addActionListener(e -> {
+            m6.run();
+        });
+
         b5 = new JButton();
+        setButtonStyle(b5, getResizedIcon("/settings.png"));
 
         jpanel.add(b1);
         jpanel.add(b2);
