@@ -1,5 +1,7 @@
 package org.jrec.window;
 
+import org.jrec.recorder.Settings;
+
 import javax.swing.*;
 import java.awt.*;
 import static org.jrec.RecorderManager.*;
@@ -10,7 +12,7 @@ public class Window extends JFrame {
     private boolean rec = false;
 
     public Window(Runnable m1, Runnable m2, Runnable m3, Runnable m4, Runnable m5, Runnable m6) {
-
+        Settings settings = new Settings();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Fast Recorder");
         setResizable(false);
@@ -20,45 +22,40 @@ public class Window extends JFrame {
         b1 = new JButton();
         setButtonStyle(b1, getResizedIcon("/b1.png"));
         b1.addActionListener(e -> {
-            if(!rec)
-            {
+            if (!rec) {
                 m1.run();
                 rec = true;
-            }
-            else
-            {
+            } else {
                 m2.run();
                 m3.run();
                 rec = false;
             }
         });
+
         b2 = new JButton();
         setButtonStyle(b2, getResizedIcon("/pause.png"));
         b2.addActionListener(e -> {
-
-            if(isPaused())
-            {
+            if (isPaused()) {
                 m5.run();
                 setButtonStyle(b2, getResizedIcon("/pause.png"));
-            }
-            else
-            {
+            } else {
                 m4.run();
                 setButtonStyle(b2, getResizedIcon("/play.png"));
             }
-
         });
+
         b3 = new JButton();
         setButtonStyle(b3, getResizedIcon("/mic.png"));
 
         b4 = new JButton();
         setButtonStyle(b4, getResizedIcon("/folder.png"));
-        b4.addActionListener(e -> {
-            m6.run();
-        });
+        b4.addActionListener(e -> m6.run());
 
         b5 = new JButton();
         setButtonStyle(b5, getResizedIcon("/settings.png"));
+        b5.addActionListener(e -> {
+            SettingsWindow sw = new SettingsWindow();
+        });
 
         jpanel.add(b1);
         jpanel.add(b2);
@@ -67,23 +64,21 @@ public class Window extends JFrame {
         jpanel.add(b5);
 
         add(jpanel);
-
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    public void setButtonStyle(JButton button, ImageIcon icon){
+    public void setButtonStyle(JButton button, ImageIcon icon) {
         button.setIcon(icon);
         button.setText(null);
         button.setFocusPainted(false);
         button.setMargin(new Insets(5, 5, 5, 5));
     }
 
-    public ImageIcon getResizedIcon(String path){
+    public ImageIcon getResizedIcon(String path) {
         ImageIcon BIcon = new ImageIcon(this.getClass().getResource(path));
         Image resizedBIcon = BIcon.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
         return new ImageIcon(resizedBIcon);
     }
-
 }
